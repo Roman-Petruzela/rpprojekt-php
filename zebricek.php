@@ -1,19 +1,12 @@
 <?php
 require("header.php");
 
-$zaznamy = array();
+$obsah = "";
 if (file_exists("zebricek.txt")) {
-    $soubor = fopen("zebricek.txt", "r");
-    if ($soubor) {
-        while (!feof($soubor)) {
-            $radek = trim(fgets($soubor));
-            if ($radek != "") {
-                $zaznamy[] = $radek;
-            }
-        }
-        fclose($soubor);
-    }
+    $obsah = file_get_contents("zebricek.txt");
 }
+
+$radky = explode("\n", $obsah);
 
 $celkem_pokusu = 0;
 $nejrychlejsi_slovo = "";
@@ -24,14 +17,12 @@ $nejvice_slovo = "";
 $nejvice_pocet = 0;
 $slova_pocty = array();
 
-for ($i = 0; $i < count($zaznamy); $i++) {
-    $casti = explode("|", $zaznamy[$i]);
-    if (count($casti) < 2) {
-        continue;
-    }
-
+for ($i = 0; $i < count($radky); $i++) {
+    $casti = explode("|", $radky[$i]);
     $slovo = trim($casti[0]);
-    $pokusy = (int) trim($casti[1]);
+    $pokusy = trim($casti[1]);
+    
+    if ($slovo == "") continue;
 
     $celkem_pokusu += $pokusy;
 
@@ -56,13 +47,13 @@ for ($i = 0; $i < count($zaznamy); $i++) {
     }
 }
 
-$posledni = array_slice($zaznamy, -10);
+$posledni = array_slice($radky, -10);
 ?>
 
 <main>
     <h1>Statistiky</h1>
 
-    <?php if (count($zaznamy) > 0) { ?>
+    <?php if (count($radky) > 0) { ?>
         <h2>Přehled</h2>
         <ul>
             <li>Celkem pokusů: <?php echo $celkem_pokusu; ?></li>
@@ -76,18 +67,20 @@ $posledni = array_slice($zaznamy, -10);
             <tbody>
                 <?php for ($i = 0; $i < count($posledni); $i++) {
                     $casti = explode("|", $posledni[$i]);
-                    if (count($casti) < 2) {
-                        continue;
-                    }
+                    $slovo = trim($casti[0]);
+                    $pokusy = trim($casti[1]);
+                    if ($slovo == "") continue;
                 ?>
                     <tr>
-                        <td><?php echo htmlspecialchars(trim($casti[0])); ?></td>
-                        <td><?php echo (int) trim($casti[1]); ?></td>
+                        <td><?php echo htmlspecialchars($slovo); ?></td>
+                        <td><?php echo $pokusy; ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
-    <?php } else { echo"<p>Zatím tu nejsou žádné záznamy ve statistikách.</p>"; }?>
+    <?php } else { ?>
+        <p>Zatím tu nejsou žádné záznamy ve statistikách.</p>
+    <?php } ?>
 </main>
 
 <?php require("footer.php"); ?>
