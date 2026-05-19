@@ -1,6 +1,3 @@
-<?php
-// obsah pro wiki: o-projektu (fragment)
-?>
 <h2>O projektu</h2>
 <p>Tento malý projekt je školní ukázka jednoduché hry inspirované Wordle. Slouží k demonstraci PHP, práce se soubory a jednoduché interaktivity.</p>
 

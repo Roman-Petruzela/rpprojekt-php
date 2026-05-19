@@ -60,7 +60,7 @@
 
         <label>
             <input type="checkbox" name="libilo" value="1">
-            Hra se mi libila
+            Hru doporučuji
         </label>
 
         <textarea name="komentar" rows="4" placeholder="Kratky komentar"></textarea>

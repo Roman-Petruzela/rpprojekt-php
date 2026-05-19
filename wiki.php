@@ -5,48 +5,49 @@ $page = "";
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 }
-
 $slozka = 'stranky';
 $stranky = array();
 if (is_dir($slozka)) {
-    $soubory = scandir($slozka);
-    foreach ($soubory as $f) {
-        if ($f == '.' || $f == '..') continue;
-        $name = pathinfo($f, PATHINFO_FILENAME);
-        $stranky[] = $name;
+    $soubory = array_diff(scandir($slozka), array(".", ".."));
+    foreach ($soubory as $soubor) {
+        $stranky[] = str_replace(".php", "", $soubor);
     }
 }
-
 sort($stranky);
 ?>
 
 <main>
     <h2>Wiki</h2>
-
     <div class="wiki-layout">
         <div class="wiki-nav-wrap">
             <h3>Stránky</h3>
             <ul class="wiki-nav">
-                <?php foreach ($stranky as $s) { 
-                    $class = 'wiki-link';
-                    if ($page == $s) { $class = 'wiki-link wiki-active'; }
+                <?php
+                foreach ($stranky as $s) {
+                    if ($page == $s) {
+                        $class = "wiki-link wiki-active";
+                    } else {
+                        $class = "wiki-link";
+                    }
+                    echo '<li><a class="' . $class . '" href="wiki.php?page=' . $s . '">' . $s . '</a></li>';
+                }
                 ?>
-                    <li><a class="<?php echo $class; ?>" href="wiki.php?page=<?php echo urlencode($s); ?>"><?php echo htmlspecialchars($s); ?></a></li>
-                <?php } ?>
             </ul>
         </div>
 
         <div class="wiki-content">
-            <?php if ($page == '') { ?>
-                <div class="wiki-panel">
-                    <h3>Vyber stránku</h3>
-                    <p>Klikni na název vlevo.</p>
-                </div>
-            <?php } else {
-                $inc = $slozka . '/' . $page . '.php';
-                if (file_exists($inc)) {
+            <?php 
+            if ($page == '') {
+                echo '<div class="wiki-panel">';
+                echo '<h3>Vyber stránku</h3>';
+                echo '<p>Klikni na název vlevo.</p>';
+                echo '</div>';
+            } else {
+                $soubor_k_nacteni = $slozka . '/' . $page . '.php';
+                
+                if (file_exists($soubor_k_nacteni)) {
                     echo '<div class="wiki-panel">';
-                    include($inc);
+                    include($soubor_k_nacteni);
                     echo '</div>';
                 } else {
                     echo '<div class="wiki-panel">';
@@ -54,9 +55,12 @@ sort($stranky);
                     echo '<p>Taková stránka tu není.</p>';
                     echo '</div>';
                 }
-            } ?>
+            } 
+            ?>
         </div>
     </div>
 </main>
 
-<?php require('footer.php'); ?>
+<?php 
+include('footer.php'); 
+?>

@@ -13,17 +13,17 @@ $nejrychlejsi_slovo = "";
 $nejrychlejsi_pokusy = 999999;
 $nejpomalejsi_slovo = "";
 $nejpomalejsi_pokusy = 0;
-$nejvice_slovo = "";
-$nejvice_pocet = 0;
-$slova_pocty = array();
+$nejcastejsi = "";
+$nejcastejsi_pocet = 0;
+$slovacislo = array();
 
 for ($i = 0; $i < count($radky); $i++) {
+    if (!isset($slovacislo[$slovo])) {
+        $slovacislo[$slovo] = 0;
+    }
     $casti = explode("|", $radky[$i]);
     $slovo = trim($casti[0]);
     $pokusy = trim($casti[1]);
-    
-    if ($slovo == "") continue;
-
     $celkem_pokusu += $pokusy;
 
     if ($pokusy < $nejrychlejsi_pokusy) {
@@ -36,51 +36,62 @@ for ($i = 0; $i < count($radky); $i++) {
         $nejpomalejsi_slovo = $slovo;
     }
 
-    if (!isset($slova_pocty[$slovo])) {
-        $slova_pocty[$slovo] = 0;
-    }
-    $slova_pocty[$slovo]++;
 
-    if ($slova_pocty[$slovo] > $nejvice_pocet) {
-        $nejvice_pocet = $slova_pocty[$slovo];
-        $nejvice_slovo = $slovo;
+    $slovacislo[$slovo]++;
+
+    if ($slovacislo[$slovo] > $nejcastejsi_pocet) {
+        $nejcastejsi_pocet = $slovacislo[$slovo];
+        $nejcastejsi = $slovo;
     }
 }
-
-$posledni = array_slice($radky, -10);
 ?>
 
 <main>
     <h1>Statistiky</h1>
+<?php
+if ($celkem_pokusu != 0) { 
+    echo "<h2>Přehled</h2>";
+    echo "<ul>";
+    echo "<li>Celkem pokusů: " . $celkem_pokusu . "</li>";
+    echo "<li>Nejrychlejší: " . $nejrychlejsi_slovo . " na " . $nejrychlejsi_pokusy . " pokus</li>";
+    echo "<li>Nejpomalejší: " . $nejpomalejsi_slovo . " na " . $nejpomalejsi_pokusy . " pokus</li>";
+    echo "<li>Nejčastější: " . $nejcastejsi . " se objevilo " . $nejcastejsi_pocet . "x</li>";
+    echo "</ul>";
 
-    <?php if (count($radky) > 0) { ?>
-        <h2>Přehled</h2>
-        <ul>
-            <li>Celkem pokusů: <?php echo $celkem_pokusu; ?></li>
-            <li>Nejrychlejší: <?php echo htmlspecialchars($nejrychlejsi_slovo); ?> na <?php echo $nejrychlejsi_pokusy; ?> pokus</li>
-            <li>Nejpomalejší: <?php echo htmlspecialchars($nejpomalejsi_slovo); ?> na <?php echo $nejpomalejsi_pokusy; ?> pokus</li>
-            <li>Nejčastější: <?php echo htmlspecialchars($nejvice_slovo); ?> se objevilo <?php echo $nejvice_pocet; ?>x</li>
-        </ul>
+    echo "<h2>Posledních 10 slov</h2>";
+    echo "<table>";
+    echo "<tbody>";
 
-        <h2>Posledních 10 slov</h2>
-        <table>
-            <tbody>
-                <?php for ($i = 0; $i < count($posledni); $i++) {
-                    $casti = explode("|", $posledni[$i]);
-                    $slovo = trim($casti[0]);
-                    $pokusy = trim($casti[1]);
-                    if ($slovo == "") continue;
-                ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($slovo); ?></td>
-                        <td><?php echo $pokusy; ?></td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    <?php } else { ?>
-        <p>Zatím tu nejsou žádné záznamy ve statistikách.</p>
-    <?php } ?>
+    $pocet_radku = count($radky);
+    $start = $pocet_radku - 10;
+    if ($start < 0) {
+        $start = 0;
+    }
+
+    for ($i = $start; $i < $pocet_radku; $i++) {
+        $casti = explode("|", $radky[$i]);
+        if (isset($casti[0]) && isset($casti[1])) {
+            $slovo = trim($casti[0]);
+            $pokusy = trim($casti[1]);
+            if ($slovo != "") {
+                echo "<tr>";
+                echo "<td>" . $slovo . "</td>";
+                echo "<td>" . $pokusy . "</td>";
+                echo "</tr>";
+            }
+        }
+    }
+
+    echo "</tbody>";
+    echo "</table>";
+
+} 
+else { 
+    echo "<p>Zatím tu nejsou žádné záznamy ve statistikách.</p>";
+} 
+?>
 </main>
 
-<?php require("footer.php"); ?>
+<?php 
+require("footer.php"); 
+?>

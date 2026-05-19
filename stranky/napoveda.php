@@ -1,6 +1,3 @@
-<?php
-// obsah pro wiki: napoveda (fragment)
-?>
 <h2>Nápověda / FAQ</h2>
 <p>Zde jsou rychlé odpovědi na běžné otázky a drobné problémy.</p>
 

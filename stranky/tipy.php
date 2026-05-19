@@ -1,6 +1,3 @@
-<?php
-// obsah pro wiki: tipy (fragment, bez header/footer)
-?>
 <h2>Tipy na hraní</h2>
 <p>Začni slovem, které má víc různých samohlásek. Rychleji tak zjistíš, jaké písmena ve slově vůbec jsou.</p>
 
