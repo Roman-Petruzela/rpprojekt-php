@@ -47,7 +47,7 @@
             
         }
     } else {
-        echo "<p>Zatim tu neni zadne hodnoceni.</p>";
+        echo {"<p>Zatim tu neni zadne hodnoceni.</p>"};
     }
 ?>
 </main>
