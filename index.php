@@ -39,14 +39,15 @@
             $libilo = htmlspecialchars($z[3]);
             $kom = htmlspecialchars($z[4]);
 
-            echo '<div class="hodnoceni-item">';
-            echo '<p><strong>' . $jmeno . '</strong> — hodnocení: ' . $hodn . '/5</p>';
-            echo '<p>Obtížnost: ' . $obtiz . ' · Líbilo se: ' . $libilo . '</p>';
-            echo '<p>' . $kom . '</p>';
-            echo '<hr> </div>';
+            echo {"<div class='hodnoceni-item'>"};
+            echo {"<p><strong>" . $jmeno . "</strong> — hodnocení: " . $hodn . "/5</p>"};
+            echo {"<p>Obtížnost: " . $obtiz . " · Líbilo se: " . $libilo . "</p>"};
+            echo {"<p>" . $kom . "</p>"};
+            echo {"<hr> </div>"};
+            
         }
     } else {
-        echo '<p>Zatim tu neni zadne hodnoceni.</p>';
+        echo "<p>Zatim tu neni zadne hodnoceni.</p>";
     }
 ?>
 </main>
