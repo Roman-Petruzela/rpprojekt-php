@@ -18,27 +18,25 @@ $nejcastejsi_pocet = 0;
 $slovacislo = array();
 
 for ($i = 0; $i < count($radky); $i++) {
-    if (!isset($slovacislo[$slovo])) {
-        $slovacislo[$slovo] = 0;
+    if (trim($radky[$i]) === "") { 
+        continue;
     }
     $casti = explode("|", $radky[$i]);
     $slovo = trim($casti[0]);
-    $pokusy = trim($casti[1]);
-    $celkem_pokusu += $pokusy;
-
+    $pokusy = (int) trim($casti[1]);
+    $celkem_pokusu += $pokusy; 
+    if (!isset($slovacislo[$slovo])) {
+        $slovacislo[$slovo] = 0;
+    }
     if ($pokusy < $nejrychlejsi_pokusy) {
         $nejrychlejsi_pokusy = $pokusy;
         $nejrychlejsi_slovo = $slovo;
     }
-
     if ($pokusy > $nejpomalejsi_pokusy) {
         $nejpomalejsi_pokusy = $pokusy;
         $nejpomalejsi_slovo = $slovo;
     }
-
-
     $slovacislo[$slovo]++;
-
     if ($slovacislo[$slovo] > $nejcastejsi_pocet) {
         $nejcastejsi_pocet = $slovacislo[$slovo];
         $nejcastejsi = $slovo;
