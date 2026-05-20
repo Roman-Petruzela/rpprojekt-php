@@ -40,7 +40,9 @@ if (isset($_POST["guess"])){
 ?>
 
 <table>
-<?php echo $_SESSION["tabulka"]; ?>
+<?php 
+echo $_SESSION["tabulka"];
+?>
 </table>
 
 <form method="POST" >
