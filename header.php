@@ -18,7 +18,7 @@ and open the template in the editor.
         <ul>
             <li><a href="index.php">o hre</a></li>
             <li><a href="hra.php">hrat</a></li>
-            <li><a href="zebricek.php">statistiky</a></li>
+            <li><a href="statistiky.php">statistiky</a></li>
             <li><a href="wiki.php">wiki</a></li>
             <li><a href="hodnoceni.php">hodnoceni</a></li>
         </ul>

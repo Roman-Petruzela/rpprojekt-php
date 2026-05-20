@@ -50,7 +50,7 @@ if (isset($_POST["guess"])){
     //session_destroy();
     if ($vyhral) {
         echo ("<h2>Vyhral jsi za " . $_SESSION["pokusy"] . " pokusu!</h2>");
-        echo ("<p><a href='hra.php'>Hrát znovu</a> nebo se podívej na <a href='zebricek.php'>statistiky</a>.</p>");
+        echo ("<p><a href='hra.php'>Hrát znovu</a> nebo se podívej na <a href='statistiky.php'>statistiky</a>.</p>");
         session_destroy();
     }
 ?>
