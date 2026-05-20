@@ -25,9 +25,13 @@
     </ul>
     <p>Tento projekt vznikl jako ukázka jednoduchého propojení PHP a textových databází.</p>
     <h2>Hodnocení</h2>
+    <hr>
 <?php
     if (!empty($hodnoceni)) {
         for ($i = 0; $i < count($hodnoceni); $i++) {
+            if (trim($hodnoceni[$i][0]) === "") { 
+                continue;
+            }
             $z = $hodnoceni[$i];
             $jmeno = htmlspecialchars($z[0]);
             $hodn = htmlspecialchars($z[1]);
@@ -39,10 +43,13 @@
             echo '<p><strong>' . $jmeno . '</strong> — hodnocení: ' . $hodn . '/5</p>';
             echo '<p>Obtížnost: ' . $obtiz . ' · Líbilo se: ' . $libilo . '</p>';
             echo '<p>' . $kom . '</p>';
-            echo '</div></main>';
+            echo '<hr> </div>';
         }
     } else {
-        echo '<p>Zatim tu neni zadne hodnoceni.</p></main>';
+        echo '<p>Zatim tu neni zadne hodnoceni.</p>';
     }
+?>
+</main>
+<?php
     require("footer.php");
 ?>
