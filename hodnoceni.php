@@ -4,35 +4,24 @@
     $ulozeno = false;
     if ($_POST) {
 
-        $jmeno = "";
-        $hodnoceni = "";
-        $obtiznost = "";
-        $libilo = "ne";
+        $doporuceni = "ne";
         $komentar = "";
 
-        if (isset($_POST["jmeno"])) {
-            $jmeno = trim($_POST["jmeno"]);
-        }
-
-        if (isset($_POST["hodnoceni"])) {
-            $hodnoceni = trim($_POST["hodnoceni"]);
-        }
-
-        if (isset($_POST["obtiznost"])) {
-            $obtiznost = trim($_POST["obtiznost"]);
-        }
-
-        if (isset($_POST["libilo"])) {
-            $libilo = "ano";
+        $jmeno = trim($_POST["jmeno"]);
+        $hodnoceni = trim($_POST["hodnoceni"]);
+        $obtiznost = trim($_POST["obtiznost"]);
+        if (isset($_POST["doporuceni"])) {
+            $doporuceni = "ano";
         }
 
         if (isset($_POST["komentar"])) {
             $komentar = trim($_POST["komentar"]);
         }
 
-        $radek = $jmeno . "|" . $hodnoceni . "|" . $obtiznost . "|" . $libilo . "|" . $komentar . "\n";
-        file_put_contents("hodnoceni.txt", $radek, FILE_APPEND);
-        $ulozeno = true;
+        $radek = $jmeno . "|" . $hodnoceni . "|" . $obtiznost . "|" . $doporuceni . "|" . $komentar . "\n";
+        if(file_put_contents("hodnoceni.txt", $radek, FILE_APPEND)){
+            $ulozeno = true;
+        }
     }
 ?>
 <main>
@@ -59,8 +48,8 @@
         </label>
 
         <label>
-            <input type="checkbox" name="libilo" value="1">
-            Hru doporučuji
+            <input type="checkbox" name="doporuceni" value="1">
+            Hru doporučuji!
         </label>
 
         <textarea name="komentar" rows="4" placeholder="Kratky komentar"></textarea>
