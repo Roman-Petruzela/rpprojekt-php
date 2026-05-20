@@ -6,10 +6,11 @@
         $skryt=TRUE;
     }
     
-?><main>
-<form method="POST" <?php if($skryt){echo 'class="skryte"';} ?>>
-    <input type="submit" value="START" name="start" <?php if($skryt){echo 'hidden';}?> >
-</form>
+?>
+<main>
+    <form method="POST" <?php if($skryt){echo 'class="skryte"';} ?>>
+        <input type="submit" value="START" name="start" <?php if($skryt){echo 'hidden';}?> >
+    </form>
 <?php
     if($skryt)
     {
