@@ -37,7 +37,7 @@ sort($stranky);
 
         <div class="wiki-content">
             <?php 
-            if ($page == '') {
+            if ($page == "") {
                 echo '<div class="wiki-panel">';
                 echo '<h3>Vyber stránku</h3>';
                 echo '<p>Klikni na název vlevo.</p>';
