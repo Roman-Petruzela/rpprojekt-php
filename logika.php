@@ -4,9 +4,7 @@ session_start();
 if (!file_exists("slova.txt")){
     file_put_contents("slova.txt", "nevim");
 }
-else{
-    $slova = explode("\n", file_get_contents("slova.txt"));
-}
+$slova = explode("\n", file_get_contents("slova.txt"));
 $vyhral = false;
 
 if (!isset($_SESSION["hledane"])) {
@@ -29,7 +27,7 @@ if (isset($_POST["guess"])){
         } else {
             $tabulka.="<td>".htmlspecialchars($guess[$i])."</td>";
         }
-    }   
+    }
     $tabulka .= "</tr>";
     $_SESSION["tabulka"] = $tabulka;
     if ($guess === $hledane){
@@ -40,7 +38,7 @@ if (isset($_POST["guess"])){
 ?>
 
 <table>
-<?php 
+<?php
 echo $_SESSION["tabulka"];
 ?>
 </table>
@@ -57,5 +55,3 @@ echo $_SESSION["tabulka"];
     }
 ?>
 </form>
-
-

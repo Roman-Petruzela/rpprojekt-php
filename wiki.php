@@ -24,18 +24,18 @@ sort($stranky);
             <ul class="wiki-nav">
                 <?php
                 foreach ($stranky as $s) {
-                    $class="";
+                    $class="wiki-link";
                     if ($page == $s) {
                         $class = "wiki-link wiki-active";
                     }
-                    echo '<li><a class=" wiki-link' . $class . '" href="wiki.php?page=' . $s . '">' . $s . '</a></li>';
+                    echo '<li><a class=" ' . $class . '" href="wiki.php?page=' . $s . '">' . $s . '</a></li>';
                 }
                 ?>
             </ul>
         </div>
 
         <div class="wiki-content">
-            <?php 
+            <?php
             if ($page == "") {
                 echo '<div class="wiki-panel">';
                 echo '<h3>Vyber stránku</h3>';
@@ -43,7 +43,7 @@ sort($stranky);
                 echo '</div>';
             } else {
                 $soubor_k_nacteni = $slozka . '/' . $page . '.php';
-                
+
                 if (file_exists($soubor_k_nacteni)) {
                     echo '<div class="wiki-panel">';
                     include($soubor_k_nacteni);
@@ -54,12 +54,12 @@ sort($stranky);
                     echo '<p>Taková stránka tu není.</p>';
                     echo '</div>';
                 }
-            } 
+            }
             ?>
         </div>
     </div>
 </main>
 
-<?php 
-include('footer.php'); 
+<?php
+include('footer.php');
 ?>
