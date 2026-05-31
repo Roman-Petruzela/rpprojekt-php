@@ -5,7 +5,7 @@
         $soubor = file_get_contents("hodnoceni.txt");
         $radky = explode("\n", $soubor);
         for ($r = 0; $r < count($radky); $r++) {
-            $hodnoceni[] = explode("|", $radky[$r]);
+            $hodnoceni[] = explode(";", $radky[$r]);
         }
     }
 ?>

@@ -18,7 +18,7 @@
             $komentar = trim($_POST["komentar"]);
         }
 
-        $radek = $jmeno . "|" . $hodnoceni . "|" . $obtiznost . "|" . $doporuceni . "|" . $komentar . "\n";
+        $radek = $jmeno . ";" . $hodnoceni . ";" . $obtiznost . ";" . $doporuceni . ";" . $komentar . "\n";
         if(file_put_contents("hodnoceni.txt", $radek, FILE_APPEND)){
             $ulozeno = true;
         }

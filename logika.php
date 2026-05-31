@@ -34,7 +34,7 @@ if (isset($_POST["guess"])){
     $_SESSION["tabulka"] = $tabulka;
     if ($guess === $hledane){
         $vyhral = true;
-        file_put_contents("zebricek.txt", $hledane . "|" . $_SESSION["pokusy"] . "\n", FILE_APPEND);
+        file_put_contents("zebricek.txt", $hledane . ";" . $_SESSION["pokusy"] . "\n", FILE_APPEND);
     }
 }
 ?>

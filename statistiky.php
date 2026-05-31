@@ -21,7 +21,7 @@ for ($i = 0; $i < count($radky); $i++) {
     if (trim($radky[$i]) === "") { 
         continue;
     }
-    $casti = explode("|", $radky[$i]);
+    $casti = explode(";", $radky[$i]);
     $slovo = trim($casti[0]);
     $pokusy = (int) trim($casti[1]);
     $celkem_pokusu += $pokusy; 
@@ -67,7 +67,7 @@ if ($celkem_pokusu != 0) {
     }
 
     for ($i = $start; $i < $pocet_radku; $i++) {
-        $casti = explode("|", $radky[$i]);
+        $casti = explode(";", $radky[$i]);
         if (isset($casti[0]) && isset($casti[1])) {
             $slovo = trim($casti[0]);
             $pokusy = trim($casti[1]);
