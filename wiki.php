@@ -24,12 +24,11 @@ sort($stranky);
             <ul class="wiki-nav">
                 <?php
                 foreach ($stranky as $s) {
+                    $class="";
                     if ($page == $s) {
                         $class = "wiki-link wiki-active";
-                    } else {
-                        $class = "wiki-link";
                     }
-                    echo '<li><a class="' . $class . '" href="wiki.php?page=' . $s . '">' . $s . '</a></li>';
+                    echo '<li><a class=" wiki-link' . $class . '" href="wiki.php?page=' . $s . '">' . $s . '</a></li>';
                 }
                 ?>
             </ul>
