@@ -40,17 +40,13 @@
             <option value="5">5</option>
         </select>
 
-        <label>
             Obtiznost:
-            <label><input type="radio" name="obtiznost" value="lehka" required> Lehká</label>
-            <label><input type="radio" name="obtiznost" value="stredni"> Střední</label>
-            <label><input type="radio" name="obtiznost" value="tezka"> Těžká</label>
-        </label>
+            <input type="radio" name="obtiznost" value="lehka" required> <label>Lehká</label>
+            <input type="radio" name="obtiznost" value="stredni"> <label>Střední</label>
+            <input type="radio" name="obtiznost" value="tezka"> <label>Těžká</label>
 
-        <label>
             <input type="checkbox" name="doporuceni" value="1">
             Hru doporučuji!
-        </label>
 
         <textarea name="komentar" rows="4" placeholder="Kratky komentar"></textarea>
 
