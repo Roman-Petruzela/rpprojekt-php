@@ -46,7 +46,7 @@ sort($stranky);
 
                 if (file_exists($soubor_k_nacteni)) {
                     echo '<div class="wiki-panel">';
-                    include($soubor_k_nacteni);
+                    require($soubor_k_nacteni);
                     echo '</div>';
                 } else {
                     echo '<div class="wiki-panel">';
@@ -61,5 +61,5 @@ sort($stranky);
 </main>
 
 <?php
-include('footer.php');
+require('footer.php');
 ?>
